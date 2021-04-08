@@ -29,4 +29,33 @@
             return $this->routes;
         }
 
+        /**
+         * match the route to the routes in the routng table, 
+         * setting the $params property f a route s found.
+         * @param strng $url the route URL
+         * @return boolen true if a match found, false otherwise
+         */
+
+         public function match ($url)
+         {
+             foreach($this->routes as $route => $params){
+                 if($url == $route){
+                     $this->params = $params;
+                     return true;
+                 }
+             }
+
+             return false;
+         }
+
+         /**
+          * Get the currently matched parameters
+          *
+          * @return array
+          */
+          public function getParams()
+          {
+              return $this->params;
+          }
+
  }
