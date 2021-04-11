@@ -20,10 +20,10 @@ $router -> add('posts',['controller' => 'Posts','action' => 'index']);
 $router -> add('posts/new',['controller' => 'Posts','action' => 'new']);
 
 //display the routing tables;
-echo '<pre>';
+/*echo '<pre>';
 var_dump($router ->getRoutes());
 echo '<pre>';
-
+*/
 //match the requested route
 $url = $_SERVER['QUERY_STRING'];
 echo $url;

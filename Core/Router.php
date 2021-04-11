@@ -19,6 +19,8 @@
            $this->routes[$route] = $params;
        }
 
+
+
        /**
         * get all ther routes from the routing table
         *
@@ -36,14 +38,32 @@
          * @return boolen true if a match found, false otherwise
          */
 
+
+
          public function match ($url)
          {
-             foreach($this->routes as $route => $params){
-                 if($url == $route){
-                     $this->params = $params;
-                     return true;
-                 }
-             }
+
+            /*
+            foreach($this->routes as $route => $params){
+                if($url == $route){
+                    $this->params = $params;
+                    return true;
+                }
+            }
+            */
+
+            //正規表現で調整
+            $reg_exp = "/^(?P<controller>[a-z-]+)\/(?<action>[a-z-]+)$/";
+            if(preg_match($reg_exp,$url,$matches)){
+                $params = [];
+                foreach($matches as $key => $match){
+                    if(is_string($key)){
+                        $params[$key] = $match;
+                    }
+                }
+                $this->params = $params;
+                return true;
+            }
 
              return false;
          }
